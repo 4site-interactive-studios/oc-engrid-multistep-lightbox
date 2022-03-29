@@ -7,8 +7,6 @@ $content-font: "Roboto", sans-serif;
 
 body.has-DonationLightbox {
   overflow: hidden;
-  canvas {
-  }
 }
 .foursiteDonationLightbox {
   position: fixed;
@@ -109,8 +107,6 @@ body.has-DonationLightbox {
     opacity: 0;
     svg {
       transform: rotate(270deg);
-    }
-    &:hover {
     }
   }
   .foursiteDonationLightbox-container {
@@ -298,8 +294,8 @@ body.has-DonationLightbox {
           display: block;
         }
         &.celebrating {
-          .dl-logo {
-          }
+          // .dl-logo {
+          // }
           .dl-celebration {
             top: 0;
             width: 100%;
@@ -484,7 +480,9 @@ body.has-DonationLightbox {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     -webkit-transform: translateZ(0);
+    transform: translateZ(0);
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     @include mq(desktop) {
       border-bottom-left-radius: 0;
     }

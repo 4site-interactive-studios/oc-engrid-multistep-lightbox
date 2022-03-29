@@ -9,7 +9,7 @@ This project makes it easy to create links to your Engaging Networks Donation Pa
 ```html
 <script
   defer="defer"
-  src="https://acb0a5d73b67fccd4bbe-c2d8138f0ea10a18dd4c43ec3aa4240a.ssl.cf5.rackcdn.com/10003/donation-lightbox-parent.js"
+  src="https://aaf1a18515da0e792f78-c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/1991/donation-lightbox-parent.js"
 ></script>
 ```
 
@@ -122,4 +122,4 @@ Your js code must be on the `src/app` folder. Styling changes must be on `src/sc
 It's going to create a `dist` folder, where you can get the `donation-lightbox-parent.js` file and publish it.
 
 Currently it's published on:  
-https://acb0a5d73b67fccd4bbe-c2d8138f0ea10a18dd4c43ec3aa4240a.ssl.cf5.rackcdn.com/10003/donation-lightbox-parent.js
+https://aaf1a18515da0e792f78-c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/1991/donation-lightbox-parent.js
