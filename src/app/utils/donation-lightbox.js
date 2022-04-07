@@ -185,14 +185,18 @@ export class DonationLightbox {
                 <path fill="currentColor" d="M7.214.786c.434-.434 1.138-.434 1.572 0 .433.434.433 1.137 0 1.571L4.57 6.572h10.172c.694 0 1.257.563 1.257 1.257s-.563 1.257-1.257 1.257H4.229l4.557 4.557c.433.434.433 1.137 0 1.571-.434.434-1.138.434-1.572 0L0 8 7.214.786z"></path>
               </svg>
             </a>
-            <div class="dl-container">
+            <div class="dl-container" style="background-color: ${
+              this.options.bg_color
+            }; color: ${this.options.txt_color}">
               ${this.loadHero()}
               ${
                 this.options.divider
                   ? `<img class="dl-divider" src="${this.options.divider}" alt="Divider">`
                   : ""
               }
-              <div class="dl-container-inner">
+              <div class="dl-container-inner" style="background-color: ${
+                this.options.bg_color
+              }; color: ${this.options.txt_color}">
                 <h1 class="dl-title" style="color: ${this.options.txt_color}">${
       this.options.title
     }</h1>
@@ -258,16 +262,25 @@ export class DonationLightbox {
       if (playButton) {
         playButton.addEventListener("click", () => {
           if (videoElement) {
-            videoElement.play();
-            overlay.querySelector(".dl-container").classList.add("playing");
+            if (videoElement.paused) {
+              videoElement.play();
+            } else {
+              videoElement.pause();
+            }
           }
         });
       }
       videoElement.addEventListener("play", (event) => {
         overlay.querySelector(".dl-container").classList.add("playing");
+        overlay.querySelector(".dl-container").classList.remove("paused");
+      });
+      videoElement.addEventListener("pause", (event) => {
+        overlay.querySelector(".dl-container").classList.remove("playing");
+        overlay.querySelector(".dl-container").classList.add("paused");
       });
       videoElement.addEventListener("ended", (event) => {
         overlay.querySelector(".dl-container").classList.remove("playing");
+        overlay.querySelector(".dl-container").classList.remove("paused");
         videoElement.load();
       });
     }
@@ -613,7 +626,10 @@ export class DonationLightbox {
     ${markup}
     ${
       !autoplay
-        ? `<div class="btn-play"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="31" viewBox="0 0 55.127 61.182"><g id="Group_38215" data-name="Group 38215" transform="translate(30 35)" fill="currentColor"><g id="play-button-arrowhead_1_" data-name="play-button-arrowhead (1)" transform="translate(-30 -35)"><path id="Path_18" data-name="Path 18" d="M18.095,1.349C12.579-1.815,8.107.777,8.107,7.134v46.91c0,6.363,4.472,8.952,9.988,5.791l41-23.514c5.518-3.165,5.518-8.293,0-11.457Z" transform="translate(-8.107 0)"/></g></g></svg></div>`
+        ? `<div class="btn-play">
+              <svg class="play-svg" xmlns="http://www.w3.org/2000/svg" width="26" height="31" viewBox="0 0 55.127 61.182"><g id="Group_38215" data-name="Group 38215" transform="translate(30 35)" fill="currentColor"><g id="play-button-arrowhead_1_" data-name="play-button-arrowhead (1)" transform="translate(-30 -35)"><path id="Path_18" data-name="Path 18" d="M18.095,1.349C12.579-1.815,8.107.777,8.107,7.134v46.91c0,6.363,4.472,8.952,9.988,5.791l41-23.514c5.518-3.165,5.518-8.293,0-11.457Z" transform="translate(-8.107 0)"/></g></g></svg>
+              <svg class="pause-svg" xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31"><path d="M10 31h-6v-31h6v31zm15-31h-6v31h6v-31z" fill="currentColor" /></svg>
+            </div>`
         : ""
     }
     </div>`;

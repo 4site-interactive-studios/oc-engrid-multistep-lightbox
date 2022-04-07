@@ -13,7 +13,7 @@ body.has-DonationLightbox {
   top: 0;
   left: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 10000;
   width: 100vw;
   height: 100%;
   transition: top 0.4s ease-in-out;
@@ -27,7 +27,7 @@ body.has-DonationLightbox {
   }
 
   .dl-mobile-logo {
-    display: block;
+    display: none; /* temporarily hide the logo on mobile */
     position: absolute;
     top: 5px;
     left: 50%;
@@ -146,9 +146,9 @@ body.has-DonationLightbox {
           display: block;
           width: 100%;
           position: relative;
-          transition: 0.3s transform ease-in-out, max-height 0.3s ease-in-out,
-            min-height 0.3s ease-in-out;
+          transition: 0.3s transform ease-in-out, opacity 0.1s ease-in-out;
           overflow: hidden;
+          max-height: 380px;
           video {
             display: block;
             width: 100%;
@@ -169,9 +169,16 @@ body.has-DonationLightbox {
             align-items: center;
             z-index: 1000;
             cursor: pointer;
-            transition: 0.3s opacity ease-in-out;
             svg {
               color: #fff;
+              transition: opacity 0.6s ease-in-out;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              &.pause-svg {
+                opacity: 0;
+              }
             }
             transition: 0.3s transform ease-in-out;
             &:hover {
@@ -184,13 +191,14 @@ body.has-DonationLightbox {
           margin-top: -84px;
           width: 100%;
           z-index: 10;
-          transition: 0.3s margin-top ease-in-out, 0.3s transform ease-in-out;
+          transition: 0.3s margin-top ease-in-out, 0.3s transform ease-in-out,
+            0.3s opacity ease-in-out;
         }
         .dl-container {
           height: 100%;
           &:hover {
             .dl-container-inner {
-              transform: translateY(-10px);
+              transform: translateY(-5px);
             }
             .dl-divider {
               transform: scale(1.1);
@@ -204,7 +212,17 @@ body.has-DonationLightbox {
               margin-top: 0;
             }
             .btn-play {
-              opacity: 0;
+              .pause-svg {
+                opacity: 1;
+              }
+              .play-svg {
+                opacity: 0;
+              }
+            }
+          }
+          &.paused {
+            .dl-divider {
+              margin-top: 0;
             }
           }
         }
@@ -224,11 +242,15 @@ body.has-DonationLightbox {
           transition: top 0.4s ease-in-out;
         }
         .dl-container-inner {
-          margin: 18px;
-          padding: 20px;
-          position: relative;
+          margin: 0;
+          padding: 20px 40px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          top: 380px;
+          transition: 0.6s top ease-in-out, 0.3s transform ease-in-out;
           z-index: 20;
-          transition: 0.3s transform ease-in-out;
           .dl-title {
             margin-top: 0;
             margin-bottom: 10px;
@@ -332,15 +354,13 @@ body.has-DonationLightbox {
           }
         }
         &.view-more {
-          .dl-logo {
+          .dl-logo,
+          .dl-hero,
+          .dl-divider {
             opacity: 0;
           }
           .dl-close-viewmore {
             opacity: 1;
-          }
-          .dl-hero {
-            min-height: 0;
-            max-height: 0;
           }
           .dl-paragraph {
             max-height: 100%;
@@ -356,6 +376,11 @@ body.has-DonationLightbox {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            .dl-container-inner {
+              top: 55px;
+              margin: 0 20px;
+              padding: 20px;
+            }
             &:hover {
               .dl-container-inner,
               .dl-divider {
@@ -455,7 +480,7 @@ body.has-DonationLightbox {
       }
       p {
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 400;
         font-stretch: normal;
         font-style: normal;
         line-height: 1;
@@ -520,6 +545,7 @@ body.has-DonationLightbox {
       overflow: hidden;
       box-sizing: content-box;
       border-radius: 4px;
+      background: transparent;
       &:hover {
         &::before {
           transform: rotate(45deg) scale(1.5);
