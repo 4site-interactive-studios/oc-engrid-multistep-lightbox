@@ -177,7 +177,7 @@ export class DonationLightbox {
           }; color: ${this.options.txt_color}">
             ${
               this.options.logo
-                ? `<img class="dl-logo" src="${this.options.logo}" alt="${this.options.title}" style="top: ${this.options.logo_position_top}; left: ${this.options.logo_position_left}; bottom: ${this.options.logo_position_bottom}; right: ${this.options.logo_position_right}">`
+                ? `<img class="dl-logo" src="${this.options.logo}" alt="${this.options.title}" style="top: ${this.options.logo_position_top}; left: ${this.options.logo_position_left}; bottom: ${this.options.logo_position_bottom}; right: ${this.options.logo_position_right}; filter: brightness(0) invert(1);">`
                 : ""
             }
             <a href="#" class="dl-close-viewmore">
@@ -453,6 +453,7 @@ export class DonationLightbox {
               maxWidth: "185px",
               scale: 1.5,
               ease: "power1.inOut",
+              filter: "",
             });
           }
           tl.to(

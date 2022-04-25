@@ -146,7 +146,7 @@ body.has-DonationLightbox {
           display: block;
           width: 100%;
           position: relative;
-          transition: 0.3s transform ease-in-out, opacity 0.1s ease-in-out;
+          transition: 0.3s transform ease-in-out;
           overflow: hidden;
           max-height: 380px;
           video {
@@ -162,7 +162,7 @@ body.has-DonationLightbox {
             bottom: 20px;
             right: 84px;
             background-color: rgba(191, 229, 245, 0.7);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -186,9 +186,10 @@ body.has-DonationLightbox {
             }
           }
         }
+
         .dl-divider {
           position: absolute;
-          margin-top: -84px;
+          transform: translateY(-99%);
           width: 100%;
           z-index: 10;
           transition: 0.3s margin-top ease-in-out, 0.3s transform ease-in-out,
@@ -201,7 +202,7 @@ body.has-DonationLightbox {
               transform: translateY(-5px);
             }
             .dl-divider {
-              transform: scale(1.1);
+              transform: scale(1.05) translateY(-99%);
             }
             .dl-viewmore {
               opacity: 1;
@@ -209,7 +210,7 @@ body.has-DonationLightbox {
           }
           &.playing {
             .dl-divider {
-              margin-top: 0;
+              transform: translateY(-99%);
             }
             .btn-play {
               .pause-svg {
@@ -222,7 +223,7 @@ body.has-DonationLightbox {
           }
           &.paused {
             .dl-divider {
-              margin-top: 0;
+              transform: translateY(-99%);
             }
           }
         }
@@ -304,7 +305,7 @@ body.has-DonationLightbox {
             display: inline-block;
             position: absolute;
             bottom: 15px;
-            right: 5px;
+            right: 20px;
             text-decoration: none;
             border-bottom: 1px solid;
             transition: 0.3s opacity ease-in-out;
@@ -355,9 +356,11 @@ body.has-DonationLightbox {
         }
         &.view-more {
           .dl-logo,
-          .dl-hero,
           .dl-divider {
             opacity: 0;
+          }
+          .dl-hero {
+            display: none;
           }
           .dl-close-viewmore {
             opacity: 1;
@@ -389,8 +392,9 @@ body.has-DonationLightbox {
             }
           }
           .dl-container-inner {
-            max-height: 400px;
+            max-height: 470px;
             overflow: auto;
+            box-sizing: border-box;
             &::-webkit-scrollbar-thumb {
               background: #074e92;
               border-radius: 10px;
