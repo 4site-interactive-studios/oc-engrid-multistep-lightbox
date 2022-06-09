@@ -311,7 +311,6 @@ export class DonationLightbox {
   }
   // Receive a message from the child iframe
   receiveMessage(event) {
-    console.log("DonationLightbox: receiveMessage: event: ", event);
     const message = event.data;
     if (message.key === "status") {
       this.status(message.value, event);
