@@ -201,6 +201,9 @@ body.has-DonationLightbox {
           &:hover {
             .dl-container-inner {
               transform: translateY(-5px);
+              .dl-paragraph::after {
+                transform: translateY(5px);
+              }
             }
             .dl-divider {
               transform: scale(1.05) translateY(calc(-100% - -2px));
@@ -296,6 +299,7 @@ body.has-DonationLightbox {
                 #cde4fc,
                 rgba(205, 228, 252, 0)
               );
+              transition: 0.3s transform ease-in-out;
             }
           }
           .dl-viewmore {
