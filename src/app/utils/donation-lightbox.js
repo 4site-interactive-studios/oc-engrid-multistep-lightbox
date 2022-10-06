@@ -308,7 +308,7 @@ export class DonationLightbox {
           window.pausedVideos.push(video);
         }
       });
-    }, 300);
+    }, 350);
   }
 
   close(e) {
