@@ -298,6 +298,17 @@ export class DonationLightbox {
     window.dataLayer.push({ event: this.options.gtm_open_event_name });
     this.overlay.classList.remove("is-hidden");
     document.body.classList.add("has-DonationLightbox");
+
+    window.pausedVideos = [];
+
+    setTimeout(() => {
+      document.querySelectorAll("video").forEach((video) => {
+        if (!video.paused) {
+          video.pause();
+          window.pausedVideos.push(video);
+        }
+      });
+    }, 300);
   }
 
   close(e) {
@@ -307,6 +318,12 @@ export class DonationLightbox {
     document.body.classList.remove("has-DonationLightbox");
     if (this.options.url) {
       this.setCookie(this.options.cookie_hours);
+    }
+
+    if (window.pausedVideos && window.pausedVideos.length > 0) {
+      window.pausedVideos.forEach((video) => {
+        video.play();
+      });
     }
   }
   // Receive a message from the child iframe
