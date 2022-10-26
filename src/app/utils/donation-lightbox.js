@@ -301,14 +301,25 @@ export class DonationLightbox {
 
     window.pausedVideos = [];
 
-    setTimeout(() => {
+    if (document.readyState != "complete") {
+      document.addEventListener("readystatechange", () => {
+        if (document.readyState == "complete") {
+          document.querySelectorAll("video").forEach((video) => {
+            if (!video.paused) {
+              video.pause();
+              window.pausedVideos.push(video);
+            }
+          });
+        }
+      });
+    } else {
       document.querySelectorAll("video").forEach((video) => {
         if (!video.paused) {
           video.pause();
           window.pausedVideos.push(video);
         }
       });
-    }, 580);
+    }
   }
 
   close(e) {
