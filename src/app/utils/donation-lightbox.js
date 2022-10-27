@@ -304,21 +304,25 @@ export class DonationLightbox {
     if (document.readyState != "complete") {
       document.addEventListener("readystatechange", () => {
         if (document.readyState == "complete") {
-          document.querySelectorAll("video").forEach((video) => {
-            if (!video.paused) {
-              video.pause();
-              window.pausedVideos.push(video);
-            }
-          });
+          setTimeout(() => {
+            document.querySelectorAll("video").forEach((video) => {
+              if (!video.paused) {
+                video.pause();
+                window.pausedVideos.push(video);
+              }
+            });
+          }, 1000);
         }
       });
     } else {
-      document.querySelectorAll("video").forEach((video) => {
-        if (!video.paused) {
-          video.pause();
-          window.pausedVideos.push(video);
-        }
-      });
+      setTimeout(() => {
+        document.querySelectorAll("video").forEach((video) => {
+          if (!video.paused) {
+            video.pause();
+            window.pausedVideos.push(video);
+          }
+        });
+      }, 1000);
     }
   }
 
